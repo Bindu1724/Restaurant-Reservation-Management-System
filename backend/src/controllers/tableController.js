@@ -2,8 +2,12 @@
 import Table from '../models/Table.js';
 
 export async function list(req, res, next) {
-  try { res.json(await Table.find().sort({ name: 1 })); }
-  catch (e) { next(e); }
+  try {
+    const tables = await Table.find({ isActive: true }).sort({ name: 1 });
+    res.json(tables);
+  } catch (e) {
+    next(e);
+  }
 }
 
 export async function create(req, res, next) {

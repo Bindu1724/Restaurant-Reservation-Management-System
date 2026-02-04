@@ -10,15 +10,15 @@ export default function AdminDashboard() {
 
   const load = async () => {
     const qs = date ? `?date=${date}` : '';
-    const res = await client.get(`/reservations${qs}`);
+    const res = await client.get(`/api/reservations${qs}`);
     setItems(res.data);
-    const t = await client.get('/tables');
+    const t = await client.get('/api/tables');
     setTables(t.data);
   };
   useEffect(()=>{ load(); }, [date]);
 
   const cancel = async (id) => {
-    try { await client.delete(`/reservations/${id}`); load(); }
+    try { await client.delete(`/api/reservations/${id}`); load(); }
     catch (err) { setError(err.response?.data?.message || 'Cancel failed'); }
   };
 

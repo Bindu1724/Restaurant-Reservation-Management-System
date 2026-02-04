@@ -6,3 +6,4 @@ export const isFutureDate = (d) => {
   const today = new Date().toISOString().slice(0,10);
   return d >= today;
 };
+

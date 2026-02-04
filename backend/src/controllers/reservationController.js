@@ -1,7 +1,7 @@
 
 import Reservation from '../models/Reservation.js';
 import Table from '../models/Table.js';
-import { isValidSlot, isFutureDate } from '../utils/slots.js';
+import { isValidSlot, isFutureDate } from '../utils/slot.js';
 
 export async function create(req, res, next) {
   try {

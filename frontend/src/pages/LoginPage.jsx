@@ -1,42 +1,57 @@
 
 import { useState } from 'react';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
-import { login } from '../api/auth';
+import { login } from '../api/auth.js';
+
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('alice@demo.com');
-  const [password, setPassword] = useState('CustomerPass123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const nav = useNavigate();
-  const location = useLocation();
-  const { loginUser } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+   const { loginUser } = useAuth();
+
 
   const submit = async (e) => {
     e.preventDefault();
     setError('');
+    setLoading(true);
     try {
-      const { data } = await login(email, password);
-      loginUser(data);
-      nav(data.role === 'admin' ? '/admin' : '/');
+      const ok = await login(email, password);
+      // ok is { token, user: { id, name, email, role } }
+      loginUser({ token: ok.token, role: ok.user.role, name: ok.user.name });
+      console.log("Login response:", ok);
+      navigate(ok.user.role === 'admin' ? '/admin' : '/customer');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
+    } finally {
+      setLoading(false);
     }
   };
 
+
   return (
-    <div className="container py-5" style={{ maxWidth: 480 }}>
-      <h3 className="mb-3">Sign in</h3>
-      {location.state?.registered && <div className="alert alert-success">Account created. Please log in.</div>}
-      {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={submit} className="vstack gap-3">
-        <input className="form-control" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
-        <input className="form-control" type="password" placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} />
-        <button className="btn btn-primary w-100">Login</button>
-      </form>
-      <div className="text-center mt-3">
+    <div className="container d-flex vh-100 justify-content-center align-items-center">
+      <form className="card p-4 shadow w-100" style={{ maxWidth: '420px' }} onSubmit={submit}>
+        <h2 className="mb-3 text-center">Sign In</h2>
+        {error && <div className="alert alert-danger">{error}</div>}
+        <div className="mb-3">
+          <label className="form-label">Email</label>
+          <input type="email" className="form-control" autoComplete="username" value={email} onChange={e=>setEmail(e.target.value)} />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Password</label>
+          <input type="password" className="form-control" autoComplete="current-password" value={password} onChange={e=>setPassword(e.target.value)} />
+        </div>
+        <button className="btn btn-primary w-100" disabled={loading}>
+          {loading ? 'Signing in...' : 'Login'}
+        </button>
+        <div className="text-center mt-3">
         <small>Don't have an account? <Link to="/register">Register</Link></small>
       </div>
-    </div>
+      </form>
+     </div>
   );
 }
