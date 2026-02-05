@@ -103,7 +103,7 @@ export default function CustomerDashboard() {
       <ul className="list-group">
         {myReservations.map(r => (
           <li key={r._id} className="list-group-item d-flex justify-content-between">
-            <span>Date: {r.date} — Time: {r.timeSlot} — Table: {r.table?.name} — Guests: {r.guests} — Status: {r.status}</span>
+            <span>Date: <span className="badge bg-primary">{r.date}</span> — Time: <span className="badge bg-primary">{r.timeSlot}</span> — Table: <span className="badge bg-primary">{r.table?.name}</span> — Guests: <span className="badge bg-primary">{r.guests}</span> — Status: <span className={r.status === 'active' ? 'badge bg-success' : 'badge bg-danger'}>{r.status}</span></span>
             {r.status === 'active' && <button className="btn btn-outline-danger btn-sm" onClick={()=>cancel(r._id)}>Cancel</button>}
           </li>
         ))}
