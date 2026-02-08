@@ -26,12 +26,12 @@ app.get('/ping', ( req, res ) => {
 })
 
 
-const port = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5000;
 
 const start = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    app.listen(process.env.PORT, () => console.log(`API on http://localhost:${process.env.PORT}`));
+    app.listen(PORT, () => console.log(`API on http://localhost:${PORT}`));
   } catch (err) {
     console.error('Failed to start server:', err);
     process.exit(1);
