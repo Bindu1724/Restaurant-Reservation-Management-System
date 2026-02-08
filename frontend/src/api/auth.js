@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export async function login(email, password) {
     try{
-        const res = await axios.post('http://localhost:5000/api/auth/login', {email,password,});
+        const res = await axios.post('https://restaurant-reservation-management-system-y27e.onrender.com/api/auth/login', {email,password,});
         return res.data;
     }catch(error){
         console.error("Login error:", error);
@@ -13,4 +13,4 @@ export async function login(email, password) {
 }
 
 export const register = (payload) => 
-    client.post('http://localhost:5000/api/auth/register', payload);
+    client.post('https://restaurant-reservation-management-system-y27e.onrender.com/api/auth/register', payload);

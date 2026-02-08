@@ -36,7 +36,7 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/auth/register', { name, email, password, role });
+      await axios.post('https://restaurant-reservation-management-system-y27e.onrender.com/api/auth/register', { name, email, password, role });
       setSuccess('Registration successful — redirecting to sign in...');
       setTimeout(() => navigate('/'), 1200);
     } catch (err) {
