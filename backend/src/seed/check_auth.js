@@ -1,4 +1,4 @@
-const api = 'http://localhost:5000';
+const api = 'https://restaurant-reservation-management-system-y27e.onrender.com';
 
 async function run() {
   try {

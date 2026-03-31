@@ -15,10 +15,9 @@ A small full-stack app to manage restaurant tables and reservations with role-ba
 
 ## 🔗 Live Demo
 
-- Frontend (Netlify): https://unrivaled-naiad-bb1126.netlify.app
+- Frontend (Netlify): https://hotelforfood.netlify.app/register
 - Backend (Render): https://restaurant-reservation-management-system-y27e.onrender.com
 
-If these links change, update the hosted sites or the repository `frontend/.env` / Render environment variables accordingly.
 
 ---
 
@@ -35,7 +34,7 @@ If these links change, update the hosted sites or the repository `frontend/.env`
 - Backend required env vars (set these on Render):
   - `MONGO_URI` — MongoDB connection string
   - `JWT_SECRET` — secret for signing tokens
-  - `CLIENT_URL` — frontend origin (e.g. `https://unrivaled-naiad-bb1126.netlify.app`) for CORS
+  - `CLIENT_URL` — frontend origin (e.g. `https://hotelforfood.netlify.app/register`) for CORS
   - `PORT` — Render provides this automatically; do not hardcode
 
 - Frontend required env vars (set these on Netlify):
