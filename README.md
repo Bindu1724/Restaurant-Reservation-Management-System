@@ -3,7 +3,7 @@
 A small full-stack app to manage restaurant tables and reservations with role-based access (admin and customer).
 
 ---
-# Here is the live link https://unrivaled-naiad-bb1126.netlify.app/
+# Here is the live link https://hotelforfood.netlify.app
 ## 🚀 Features
 
 - Admin: create/manage tables and view/cancel all reservations
@@ -15,7 +15,7 @@ A small full-stack app to manage restaurant tables and reservations with role-ba
 
 ## 🔗 Live Demo
 
-- Frontend (Netlify): https://hotelforfood.netlify.app/register
+- Frontend (Netlify): https://hotelforfood.netlify.app
 - Backend (Render): https://restaurant-reservation-management-system-y27e.onrender.com
 
 
